@@ -13,7 +13,7 @@ export const profile = {
   phone: '+91 84849 44381',
   phoneHref: '+918484944381',
   region: 'Maharashtra, IN',
-  experienceYears: '3.5 years',
+  experienceYears: '5 years',
   github: 'https://github.com/PVK1330',
   linkedin: 'https://www.linkedin.com/in/kanoujiya-prince-vinjendrakumar-752a461a8',
   resume: '/Prince-Kanoujiya-Resume.pdf',
@@ -31,14 +31,14 @@ export const profile = {
 
 export const status = [
   { k: 'status', v: 'available', live: true },
-  { k: 'experience', v: '3.5 years' },
+  { k: 'experience', v: '5 years' },
   { k: 'region', v: 'Maharashtra, IN' },
   { k: 'mode', v: 'remote / relocation' },
   { k: 'focus', v: 'SaaS · API · automation' },
 ]
 
 export const about =
-  "Full-stack web developer with three years building and scaling secure SaaS platforms across §PHP§ and §JavaScript§ stacks. I've led small teams, architected RESTful APIs, integrated the WhatsApp Cloud API and Meta Developer Platform, and owned delivery from requirement analysis through production. I care about clean, maintainable code, solid authentication and role-based access, and shipping systems that stay fast and reliable under real load."
+  "Full-stack web developer with five years building and scaling secure SaaS platforms across §PHP§ and §JavaScript§ stacks. I've led small teams, architected RESTful APIs, integrated the WhatsApp Cloud API and Meta Developer Platform, and owned delivery from requirement analysis through production. I care about clean, maintainable code, solid authentication and role-based access, and shipping systems that stay fast and reliable under real load."
 
 export const stack = [
   {
@@ -83,6 +83,18 @@ export const experience = [
     ],
   },
   {
+    when: 'Feb 2025 — Apr 2025',
+    badge: null,
+    role: 'Full-Stack Developer',
+    company: 'Hiray Media and Technology Pvt. Ltd',
+    meta: 'Enterprise ERP Solutions · Nashik, India',
+    points: [
+      'Contributed as a Full-Stack Developer on the §Campus360 ERP platform§ (hmtcampus360v2.net), designing portal structures and handling college administrative workflows.',
+      'Optimized database queries and structured schemas to improve performance under high concurrent user loads.',
+      'Developed responsive user dashboards and administrative control panels using core web technologies.',
+    ],
+  },
+  {
     when: 'Jul 2023 — Feb 2025',
     badge: null,
     role: 'Full-Stack Developer',
@@ -107,30 +119,36 @@ export const projects = [
     title: 'WhatsApp Automation SaaS Platform',
     desc: 'A WhatsApp marketing & automation platform (comparable to AiSensy / WATI) with broadcasting, template management, contact handling, campaign tracking, and a visual chatbot flow builder — all on a scalable multi-tenant architecture.',
     stack: ['Laravel', 'WhatsApp Cloud API', 'Multi-tenant SaaS', 'Webhooks'],
+    github: 'https://github.com/PVK1330',
+    demo: 'https://github.com/PVK1330',
   },
   {
     id: '02',
     title: 'Nahata Sports — Booking Platform',
     desc: 'A venue and slot-booking platform with real-time availability, online payments, and an admin CMS for managing venues, categories, pricing, and schedules.',
     stack: ['PHP', 'MySQL', 'REST API'],
+    github: 'https://github.com/PVK1330',
   },
   {
     id: '03',
     title: 'DreamsToFly — Study Abroad',
     desc: 'A platform helping students explore international universities and programs, with dynamic search & filtering, a custom CMS for listings, and a responsive, lead-focused interface.',
     stack: ['Laravel', 'Custom CMS'],
+    github: 'https://github.com/PVK1330',
   },
   {
     id: '04',
     title: 'Hobit — Multi-Channel Booking',
     desc: 'An end-to-end service booking workflow across Web, App, and WhatsApp — covering registration, scheduling, and confirmation — backed by a scalable real-time backend.',
     stack: ['Web', 'App', 'WhatsApp'],
+    github: 'https://github.com/PVK1330',
   },
   {
     id: '05',
     title: 'Leaving Certificate Management',
     desc: 'An online system to generate and download certificates as PDFs, with student fee tracking, custom pagination for large datasets, email-based password recovery, and role-based access control.',
     stack: ['PHP', 'MySQL', 'RBAC'],
+    github: 'https://github.com/PVK1330',
   },
 ]
 
