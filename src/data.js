@@ -13,10 +13,10 @@ export const profile = {
   phone: '+91 84849 44381',
   phoneHref: '+918484944381',
   region: 'Maharashtra, IN',
-  experienceYears: '5 years',
+  experienceYears: '3.5 years',
   github: 'https://github.com/PVK1330',
   linkedin: 'https://www.linkedin.com/in/kanoujiya-prince-vinjendrakumar-752a461a8',
-  resume: '/Prince-Kanoujiya-Resume.pdf',
+  resume: '/resume',
   thesisLines: [
     'I build secure,',
     { strong: 'multi-tenant SaaS' },
@@ -31,14 +31,14 @@ export const profile = {
 
 export const status = [
   { k: 'status', v: 'available', live: true },
-  { k: 'experience', v: '5 years' },
+  { k: 'experience', v: '3.5 yrs' },
   { k: 'region', v: 'Maharashtra, IN' },
   { k: 'mode', v: 'remote / relocation' },
   { k: 'focus', v: 'SaaS · API · automation' },
 ]
 
 export const about =
-  "Full-stack web developer with five years building and scaling secure SaaS platforms across §PHP§ and §JavaScript§ stacks. I've led small teams, architected RESTful APIs, integrated the WhatsApp Cloud API and Meta Developer Platform, and owned delivery from requirement analysis through production. I care about clean, maintainable code, solid authentication and role-based access, and shipping systems that stay fast and reliable under real load."
+  "Full-stack web developer with 3.5 years building and scaling secure SaaS platforms across §PHP§ and §JavaScript§ stacks. I've led small teams, architected RESTful APIs, integrated the WhatsApp Cloud API and Meta Developer Platform, and owned delivery from requirement analysis through production. I care about clean, maintainable code, solid authentication and role-based access, and shipping systems that stay fast and reliable under real load."
 
 export const stack = [
   {
@@ -120,7 +120,6 @@ export const projects = [
     desc: 'A WhatsApp marketing & automation platform (comparable to AiSensy / WATI) with broadcasting, template management, contact handling, campaign tracking, and a visual chatbot flow builder — all on a scalable multi-tenant architecture.',
     stack: ['Laravel', 'WhatsApp Cloud API', 'Multi-tenant SaaS', 'Webhooks'],
     github: 'https://github.com/PVK1330',
-    demo: 'https://github.com/PVK1330',
   },
   {
     id: '02',
@@ -150,6 +149,48 @@ export const projects = [
     stack: ['PHP', 'MySQL', 'RBAC'],
     github: 'https://github.com/PVK1330',
   },
+  {
+    id: '06',
+    title: 'Play at Work',
+    desc: 'A corporate engagement and team-activity booking platform. Employees browse, book, and manage in-office or virtual team activities — powered by a clean admin dashboard and event scheduling backend.',
+    stack: ['PHP', 'Laravel', 'MySQL', 'REST API'],
+    demo: 'https://www.playatwork.io/',
+  },
+  {
+    id: '07',
+    title: 'ElitePic — Photography Services',
+    desc: 'A professional photography booking and portfolio platform for a UK-based studio. Features service listings, online booking, gallery management, and a responsive client-facing UI.',
+    stack: ['PHP', 'Bootstrap', 'MySQL'],
+    demo: 'https://elitepic.co.uk/',
+  },
+  {
+    id: '08',
+    title: 'Royal Marathas',
+    desc: 'A community heritage and events platform for the Royal Marathas organization. Includes event listings, member registration, a news/announcements CMS, and a dynamic, mobile-first layout.',
+    stack: ['PHP', 'CodeIgniter 4', 'MySQL'],
+    demo: 'https://www.royalmarathas.com/',
+  },
+  {
+    id: '09',
+    title: 'All Star Premier Auto',
+    desc: 'A vehicle listing and dealership platform with inventory search, detailed car pages, online enquiry forms, and an admin panel for managing stock, pricing, and lead tracking.',
+    stack: ['PHP', 'MySQL', 'Bootstrap'],
+    demo: 'https://www.allstarpremierauto.com/',
+  },
+  {
+    id: '10',
+    title: 'PrintZelf — Print-on-Demand',
+    desc: 'A Dutch print-on-demand e-commerce platform where users design and order custom print products. Includes a product configurator, order pipeline, and a multi-role admin panel for fulfilment.',
+    stack: ['Laravel', 'MySQL', 'REST API'],
+    demo: 'https://printzelf.nl/',
+  },
+  {
+    id: '11',
+    title: 'AQATO — Australian Platform',
+    desc: 'A qualification assessment and registration portal for tradespeople in Australia. Handles multi-step application forms, document uploads, status tracking, and a comprehensive admin review workflow.',
+    stack: ['PHP', 'Laravel', 'MySQL', 'REST API'],
+    demo: 'https://aqato.com.au/',
+  },
 ]
 
 export const education = [
@@ -168,8 +209,8 @@ export const education = [
 export const certs = ['Full Stack Developer', 'MERN Stack Developer']
 
 export const aboutStats = [
-  { n: '5+', label: 'Years Experience' },
-  { n: '20+', label: 'Projects Delivered' },
+  { n: '3.5+', label: 'Years Experience' },
+  { n: '11+', label: 'Projects Delivered' },
   { n: '3', label: 'Core Tech Stacks' },
   { n: '100+', label: 'APIs Shipped' },
 ]
@@ -225,6 +266,7 @@ export const blogs = [
     date: 'May 2025',
     readTime: '6 min read',
     tag: 'Architecture',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=60',
     title: 'Building Multi-Tenant SaaS with Laravel: Isolation Without Overhead',
     excerpt: 'How I structure shared-database, shared-schema multi-tenancy with per-tenant config, scoped queries, and zero cross-contamination — without a separate database per customer.',
     body: [
@@ -313,6 +355,7 @@ export const blogs = [
     date: 'Mar 2025',
     readTime: '8 min read',
     tag: 'Integration',
+    image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=1200&q=60',
     title: 'WhatsApp Cloud API in Production: Webhooks, Templates & Rate Limits',
     excerpt: "A practical guide to going live with the WhatsApp Business API — verifying webhooks, managing message templates, handling delivery statuses, and staying inside Meta's rate windows.",
     body: [
@@ -385,6 +428,7 @@ export const blogs = [
     date: 'Jan 2025',
     readTime: '5 min read',
     tag: 'Backend',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=60',
     title: 'REST API Design Patterns I Actually Use',
     excerpt: "Token auth, versioning, RBAC middleware, consistent error envelopes, and pagination — the patterns that appear in every API I ship and why I've converged on them.",
     body: [

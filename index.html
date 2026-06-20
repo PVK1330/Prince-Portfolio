@@ -28,12 +28,42 @@
   <meta name="twitter:description" content="Secure, multi-tenant SaaS, WhatsApp Cloud API automation, and high-performance REST APIs using PHP (Laravel, CI4) and JS (Node.js, React)." />
   <meta name="twitter:image" content="/og-image.png" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Prince Kanoujiya",
+    "jobTitle": "Full-Stack Developer",
+    "description": "Full-stack web developer specializing in secure multi-tenant SaaS, REST APIs, and WhatsApp Cloud API automation.",
+    "email": "pkk22722@gmail.com",
+    "telephone": "+918484944381",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://github.com/PVK1330",
+      "https://www.linkedin.com/in/kanoujiya-prince-vinjendrakumar-752a461a8"
+    ],
+    "knowsAbout": ["PHP", "Laravel", "CodeIgniter 4", "Node.js", "React.js", "WhatsApp Cloud API", "SaaS Development", "REST APIs", "MySQL", "PostgreSQL"]
+  }
+  </script>
+
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Apply saved theme before React mounts to prevent flash -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('pk-theme')
+      var preferLight = window.matchMedia('(prefers-color-scheme: light)').matches
+      document.documentElement.setAttribute('data-theme', t || (preferLight ? 'light' : 'dark'))
+    })()
+  </script>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

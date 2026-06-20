@@ -11,7 +11,7 @@
   --accent-dim: #1B7A70;
   --live: #34D399;
   --radius: 14px;
-  --maxw: 1080px;
+  --maxw: 1440px;
 }
 
 * {
@@ -90,24 +90,28 @@ a {
 header.nav {
   position: sticky;
   top: 0;
-  z-index: 50;
-  backdrop-filter: blur(10px);
-  background: rgba(14, 17, 22, .72);
+  z-index: 100;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(14, 17, 22, .82);
   border-bottom: 1px solid transparent;
-  transition: border-color .3s ease;
+  transition: border-color .3s ease, background .3s ease;
 }
 
 header.nav.scrolled {
-  border-color: var(--line)
+  border-color: var(--line);
+  background: rgba(14, 17, 22, .96);
 }
 
 .nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 68px;
+  gap: 16px;
 }
 
+/* ── Brand ── */
 .brand {
   font-family: "IBM Plex Mono", monospace;
   font-size: .92rem;
@@ -116,27 +120,28 @@ header.nav.scrolled {
   display: flex;
   align-items: center;
   gap: 9px;
+  flex-shrink: 0;
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   object-fit: cover;
   border: 1px solid var(--line);
-  transition: transform 0.3s ease, border-color 0.3s ease, filter 0.3s ease;
+  transition: transform .3s ease, border-color .3s ease, filter .3s ease;
 }
 
 .brand:hover .brand-logo {
   transform: rotate(6deg) scale(1.08);
   border-color: var(--accent);
-  filter: drop-shadow(0 0 6px rgba(45, 212, 191, 0.4));
+  filter: drop-shadow(0 0 6px rgba(45, 212, 191, .4));
 }
 
 .brand-name {
   color: var(--text);
   font-weight: 550;
-  transition: color 0.2s ease;
+  transition: color .2s ease;
 }
 
 .brand:hover .brand-name {
@@ -149,67 +154,96 @@ header.nav.scrolled {
   border-radius: 50%;
   background: var(--live);
   box-shadow: 0 0 0 0 rgba(52, 211, 153, .5);
-  animation: pulse 2.4s infinite
+  animation: pulse 2.4s infinite;
 }
 
+/* ── Desktop nav links ── */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 30px
+  gap: 28px;
 }
 
 .nav-links a {
   font-family: "IBM Plex Mono", monospace;
   font-size: .82rem;
   color: var(--muted);
+  text-transform: capitalize;
   transition: color .2s ease;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
-  color: var(--text)
+  color: var(--text);
 }
 
 .nav-links a.active {
   color: var(--accent);
 }
 
+/* Contact CTA button */
 .nav-cta {
   border: 1px solid var(--line);
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 8px;
-  color: var(--text);
-  transition: border-color .2s ease, background .2s ease;
+  color: var(--text) !important;
+  transition: border-color .2s ease, background .2s ease, color .2s ease !important;
 }
 
 .nav-cta:hover {
   border-color: var(--accent);
-  background: rgba(45, 212, 191, .06)
+  background: rgba(45, 212, 191, .06);
+  color: var(--accent) !important;
 }
 
-.nav-links .nav-cta.active {
-  border-color: var(--accent);
+.nav-cta.active {
+  border-color: var(--accent) !important;
   background: rgba(45, 212, 191, .08);
-  color: var(--accent);
+  color: var(--accent) !important;
 }
 
-/* hamburger */
+/* ── Back link (blog detail) — always visible, no hamburger ── */
+.nav-back-link {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .82rem;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+
+.nav-back-link:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: rgba(45, 212, 191, .05);
+}
+
+/* ── Hamburger button (hidden on desktop) ── */
 .nav-toggle {
   display: none;
   background: none;
   border: 1px solid var(--line);
   border-radius: 8px;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
-  transition: border-color .2s ease;
+  flex-shrink: 0;
+  transition: border-color .2s ease, background .2s ease;
+  z-index: 101;
 }
 
 .nav-toggle:hover {
-  border-color: var(--accent)
+  border-color: var(--accent);
+  background: rgba(45, 212, 191, .05);
 }
 
 .nav-toggle span {
@@ -218,19 +252,37 @@ header.nav.scrolled {
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: transform .25s ease, opacity .2s ease
+  transition: transform .28s ease, opacity .2s ease;
 }
 
 .nav-toggle.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg)
+  transform: translateY(7px) rotate(45deg);
 }
 
 .nav-toggle.open span:nth-child(2) {
-  opacity: 0
+  opacity: 0;
 }
 
 .nav-toggle.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg)
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Tap-outside overlay */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 98;
+}
+
+/* ── Intermediate: tighten gap at 920px ── */
+@media(max-width: 920px) {
+  .nav-links {
+    gap: 18px;
+  }
+  .nav-links a {
+    font-size: .78rem;
+  }
 }
 
 @keyframes pulse {
@@ -249,7 +301,7 @@ header.nav.scrolled {
 
 /* ---------- HERO ---------- */
 .hero {
-  padding: 96px 0 76px;
+  padding: 80px 0 60px;
   position: relative
 }
 
@@ -425,7 +477,7 @@ header.nav.scrolled {
 
 /* ---------- SECTIONS ---------- */
 section {
-  padding: 74px 0;
+  padding: 60px 0;
   position: relative
 }
 
@@ -457,6 +509,8 @@ section {
   line-height: 1.75;
   max-width: 64ch;
   color: var(--text);
+  text-align: justify;
+  text-align-last: left;
 }
 
 .about-body span {
@@ -597,8 +651,8 @@ section {
 /* projects */
 .proj-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   margin-top: 40px
 }
 
@@ -670,7 +724,8 @@ section {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-top: 24px;
+  margin-top: auto;
+  padding-top: 18px;
   flex-wrap: wrap;
 }
 
@@ -920,7 +975,7 @@ footer {
   }
 
   .proj-grid {
-    grid-template-columns: 1fr
+    grid-template-columns: repeat(2, 1fr)
   }
 
   .card.featured {
@@ -938,62 +993,104 @@ footer {
   }
 }
 
-@media(max-width:680px) {
+/* ── Mobile nav: hamburger kicks in at 768px ── */
+@media(max-width: 768px) {
   .nav-toggle {
-    display: flex
+    display: flex;
   }
 
+  .nav-overlay {
+    display: block;
+  }
+
+  /* Dropdown panel slides down under the sticky header */
   .nav-links {
     position: absolute;
-    top: 64px;
+    top: 68px; /* matches nav-inner height */
     left: 0;
     right: 0;
+    z-index: 99;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: rgba(14, 17, 22, .97);
-    backdrop-filter: blur(12px);
+    background: rgba(10, 13, 18, .98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--line);
     max-height: 0;
     overflow: hidden;
-    transition: max-height .32s ease;
+    transition: max-height .35s cubic-bezier(.4, 0, .2, 1);
   }
 
   .nav-links.open {
-    max-height: 340px
+    max-height: 420px; /* 5 links × ~84px */
   }
 
+  /* Each link: full-width row with comfortable touch target */
   .nav-links a {
-    padding: 16px 28px;
-    border-top: 1px solid var(--line-soft);
-    font-size: .92rem;
+    display: flex;
+    align-items: center;
+    padding: 17px 24px;
+    font-size: .9rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line-soft);
+    text-transform: capitalize;
+    transition: background .15s ease, color .15s ease;
   }
 
-  .nav-links .nav-cta {
-    border: none;
-    border-radius: 0;
-    margin: 0;
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(45, 212, 191, .05);
     color: var(--accent);
   }
 
-  .nav-cta:hover {
-    background: rgba(45, 212, 191, .06)
+  /* Active indicator: left accent bar */
+  .nav-links a.active {
+    border-left: 3px solid var(--accent);
+    padding-left: 21px;
   }
 
+  /* Contact CTA: reset border-box styling in the dropdown */
+  .nav-links .nav-cta {
+    border: none;
+    border-radius: 0;
+    padding: 17px 24px;
+    color: var(--accent) !important;
+    background: rgba(45, 212, 191, .04);
+    font-weight: 500;
+  }
+
+  .nav-links .nav-cta.active {
+    background: rgba(45, 212, 191, .08);
+    border-left: 3px solid var(--accent);
+    padding-left: 21px;
+  }
+}
+
+/* ── General mobile layout ── */
+@media(max-width: 680px) {
   .wrap {
-    padding: 0 20px
+    padding: 0 20px;
+  }
+
+  .proj-grid {
+    grid-template-columns: 1fr
   }
 
   .hero {
-    padding: 56px 0 48px
+    padding: 56px 0 48px;
   }
 
   section {
-    padding: 56px 0
+    padding: 56px 0;
   }
 
   .contact {
-    padding: 40px 24px
+    padding: 40px 24px;
   }
 }
 
@@ -1554,6 +1651,8 @@ footer {
   color: var(--muted);
   line-height: 1.6;
   flex: 1;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .svc-tags {
@@ -1597,12 +1696,63 @@ footer {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  overflow: hidden;
   transition: border-color .2s ease, background .2s ease;
   position: relative;
+}
+
+/* ── Blog Thumbnail ── */
+.blog-thumb {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+  display: block;
+}
+
+.blog-card:hover .blog-thumb img {
+  transform: scale(1.05);
+}
+
+.blog-thumb-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .68rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #04201D;
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.blog-card-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.blog-card-body .blog-excerpt {
+  flex: 1;
+}
+
+.blog-card-body .blog-link {
+  margin-top: auto;
 }
 
 .blog-card:hover {
@@ -1647,6 +1797,8 @@ footer {
   color: var(--muted);
   line-height: 1.65;
   flex: 1;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .blog-link {
@@ -1697,21 +1849,6 @@ footer {
   color: var(--accent);
   border-color: var(--accent-dim);
   background: rgba(45, 212, 191, .06);
-}
-
-/* ---------- NAV BACK LINK (blog detail) ---------- */
-.nav-back-link {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: .82rem;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: color .2s ease;
-}
-
-.nav-back-link:hover {
-  color: var(--accent);
 }
 
 /* ---------- BLOG FILTERS ---------- */
@@ -1820,7 +1957,32 @@ footer {
 
 /* Post header */
 .bd-header {
+  margin-bottom: 32px;
+}
+
+.bd-excerpt {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 14px;
+  max-width: 68ch;
+}
+
+/* Hero image in blog detail */
+.bd-hero-img {
+  border-radius: var(--radius);
+  overflow: hidden;
   margin-bottom: 48px;
+  max-height: 480px;
+  border: 1px solid var(--line);
+}
+
+.bd-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-height: 480px;
 }
 
 .bd-meta {
@@ -1905,6 +2067,8 @@ footer {
   font-size: 1.02rem;
   line-height: 1.8;
   color: var(--muted);
+  text-align: justify;
+  text-align-last: left;
 }
 
 .bd-code-wrap {
@@ -2046,4 +2210,978 @@ footer {
   .bd-container {
     padding: 0 20px;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MULTI-PAGE ROUTING — page entry animation, page hero, sections
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Page entrance animation */
+.page-anim {
+  animation: pageIn .38s cubic-bezier(.215, .61, .355, 1) both;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Suspense placeholder — keeps layout stable while lazy page loads */
+.page-loading {
+  min-height: 100vh;
+}
+
+/* ── Page Hero (used by every inner page) ── */
+.page-hero {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 90% at 15% 60%,
+    rgba(45, 212, 191, .05) 0%, transparent 65%);
+}
+
+.page-hero-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.04;
+  margin-top: 12px;
+}
+
+.page-hero-sub {
+  font-size: 1.08rem;
+  color: var(--muted);
+  max-width: 56ch;
+  margin-top: 18px;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════
+   HOME PAGE — highlights, sections, CTA
+   ═══════════════════════════════════ */
+
+/* Service highlight strip just below the hero */
+.home-highlights {
+  padding: 0 0 0;
+}
+
+.home-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.home-highlight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 28px;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  transition: background .2s ease;
+}
+
+.home-highlight:last-child {
+  border-right: none;
+}
+
+.home-highlight:hover {
+  background: var(--surface-2);
+}
+
+.home-highlight-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--accent-dim);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background: rgba(45, 212, 191, .06);
+  flex-shrink: 0;
+}
+
+.home-highlight-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: .94rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.home-highlight-tags {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem;
+  color: var(--muted-2);
+  margin-top: 3px;
+}
+
+/* Generic repeating section inside the home page */
+.home-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+}
+
+.home-view-all {
+  display: inline-flex;
+  margin-top: 30px;
+}
+
+/* Two-column blog preview on home */
+.home-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 32px;
+}
+
+/* Home CTA strip */
+.home-cta {
+  padding: 56px 0 64px;
+  border-top: 1px solid var(--line);
+}
+
+.home-cta-box {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(160deg, var(--surface), rgba(45, 212, 191, .03));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-cta-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(45, 212, 191, .07), transparent 70%);
+  pointer-events: none;
+}
+
+.home-cta-box .eyebrow {
+  justify-content: center;
+}
+
+.home-cta-box h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin: 12px 0 16px;
+}
+
+.home-cta-box p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 44ch;
+  margin: 0 auto 28px;
+}
+
+/* ═══════════════════════════════════
+   SERVICES PAGE — process steps
+   ═══════════════════════════════════ */
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.process-step {
+  padding: 32px 26px;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  transition: background .2s ease;
+}
+
+.process-step:last-child {
+  border-right: none;
+}
+
+.process-step:hover {
+  background: var(--surface-2);
+}
+
+.process-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: .22;
+  line-height: 1;
+}
+
+.process-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 14px;
+}
+
+.process-desc {
+  font-size: .88rem;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.65;
+  text-align: justify;
+  text-align-last: left;
+}
+
+/* ═══════════════════════════════════
+   CONTACT PAGE — two-column layout
+   ═══════════════════════════════════ */
+
+.contact-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  margin-top: 52px;
+  align-items: start;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contact-method-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color .2s ease, background .2s ease, transform .15s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contact-method-card:hover {
+  border-color: var(--accent-dim);
+  background: var(--surface-2);
+  transform: translateX(4px);
+}
+
+.contact-method-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(45, 212, 191, .08);
+  border: 1px solid var(--accent-dim);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.contact-method-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .68rem;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+.contact-method-value {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .88rem;
+  color: var(--text);
+  margin-top: 3px;
+}
+
+.contact-method-arrow {
+  margin-left: auto;
+  color: var(--muted-2);
+  flex-shrink: 0;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.contact-method-card:hover .contact-method-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.contact-status-panel {
+  position: sticky;
+  top: 88px;
+}
+
+.contact-statement {
+  padding: 24px 26px;
+  background: linear-gradient(160deg, var(--surface), rgba(45, 212, 191, .025));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.contact-statement p {
+  font-size: .96rem;
+  color: var(--muted);
+  line-height: 1.7;
+  text-align: justify;
+  text-align-last: left;
+}
+
+/* ═══════════════════════════════════
+   RESPONSIVE OVERRIDES
+   ═══════════════════════════════════ */
+
+@media(max-width: 880px) {
+  .home-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-highlight {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .home-highlight:last-child {
+    border-bottom: none;
+  }
+
+  .home-blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-step {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .process-step:nth-child(even) {
+    border-right: none;
+  }
+
+  .process-step:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .contact-page-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact-status-panel {
+    position: static;
+  }
+}
+
+@media(max-width: 680px) {
+  .page-hero {
+    padding: 52px 0 44px;
+  }
+
+  .home-cta-box {
+    padding: 44px 24px;
+  }
+}
+
+@media(max-width: 560px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-step {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .process-step:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+   ═══════════════════════════════════════════════════════════════ */
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: rgba(45, 212, 191, .06);
+  transform: rotate(20deg) scale(1.08);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT THEME
+   Applied via data-theme="light" on <html>.
+   The index.html inline script sets this before React mounts
+   to prevent flash of wrong theme.
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] {
+  --bg:         #F8FAFC;
+  --surface:    #FFFFFF;
+  --surface-2:  #F1F5F9;
+  --line:       #E2E8F0;
+  --line-soft:  #EEF2F7;
+  --text:       #0F172A;
+  --muted:      #64748B;
+  --muted-2:    #7C8FA1;
+  --accent:     #0D9488;
+  --accent-dim: #0F766E;
+  --live:       #059669;
+}
+
+/* ── Nav (overrides hardcoded dark rgba values) ── */
+[data-theme="light"] header.nav {
+  background: rgba(248, 250, 252, .88);
+}
+
+[data-theme="light"] header.nav.scrolled {
+  background: rgba(248, 250, 252, .97);
+}
+
+@media(max-width: 768px) {
+  [data-theme="light"] .nav-links {
+    background: rgba(248, 250, 252, .99) !important;
+  }
+}
+
+/* ── Hero vignette (dark→light) ── */
+[data-theme="light"] .hero::after {
+  background: radial-gradient(ellipse 70% 80% at 30% 40%,
+    rgba(248, 250, 252, 0.88) 0%,
+    rgba(248, 250, 252, 0.5)  45%,
+    transparent 75%);
+}
+
+/* ── Scene3D: JS switches to NormalBlending + dark teal in light mode;
+       only a gentle overall fade remains in CSS ── */
+[data-theme="light"] .scene3d {
+  opacity: 0.85;
+}
+
+/* ── Grid overlay ── */
+[data-theme="light"] body::before {
+  opacity: .18;
+}
+
+/* ── Status / terminal panel ── */
+[data-theme="light"] .status {
+  background: linear-gradient(180deg, #fff, #f1f5f9);
+}
+
+[data-theme="light"] .status-bar {
+  background: #f1f5f9;
+}
+
+/* ── Cards: fix near-transparent chip backgrounds ── */
+[data-theme="light"] .card .stackline span {
+  background: rgba(0, 0, 0, .05);
+  color: var(--muted);
+}
+
+[data-theme="light"] .chip {
+  background: rgba(0, 0, 0, .04);
+  color: var(--muted);
+}
+
+[data-theme="light"] .card-link {
+  background: rgba(0, 0, 0, .02);
+}
+
+/* ── Stack grid ── */
+[data-theme="light"] .stack-cell {
+  background: var(--surface);
+}
+
+[data-theme="light"] .stack-cell:hover {
+  background: var(--surface-2);
+}
+
+/* ── Home / page CTA boxes ── */
+[data-theme="light"] .home-cta-box {
+  background: linear-gradient(160deg, var(--surface), rgba(13, 148, 136, .04));
+}
+
+[data-theme="light"] .home-cta-box::before {
+  background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(13, 148, 136, .06), transparent 70%);
+}
+
+/* ── Blog filters ── */
+[data-theme="light"] .blog-filter-btn {
+  background: rgba(0, 0, 0, .02);
+}
+
+/* ── WhatsApp widget ── */
+[data-theme="light"] .wa-chat {
+  background: rgba(255, 255, 255, .97);
+  border-color: var(--line);
+}
+
+[data-theme="light"] .wa-header {
+  background: #f1f5f9;
+  border-bottom-color: var(--line);
+}
+
+[data-theme="light"] .bot .wa-bubble {
+  background: #f1f5f9;
+  border-color: var(--line);
+}
+
+[data-theme="light"] .user .wa-bubble {
+  background: var(--accent);
+  color: #fff;
+}
+
+[data-theme="light"] .wa-body {
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+}
+
+/* ── Blog detail code / callout ── */
+[data-theme="light"] .bd-code {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+[data-theme="light"] .bd-code-lang {
+  background: var(--accent);
+  color: #fff;
+}
+
+[data-theme="light"] .bd-callout {
+  background: rgba(13, 148, 136, .06);
+  border-left-color: var(--accent);
+}
+
+[data-theme="light"] .bd-lead {
+  border-left-color: var(--accent);
+}
+
+/* ── Page hero gradient ── */
+[data-theme="light"] .page-hero::after {
+  background: radial-gradient(ellipse 80% 90% at 15% 60%,
+    rgba(13, 148, 136, .04) 0%, transparent 65%);
+}
+
+/* ── Contact page statement ── */
+[data-theme="light"] .contact-statement {
+  background: linear-gradient(160deg, var(--surface), rgba(13, 148, 136, .03));
+}
+
+/* ── Tilt glare (invisible on light bg, so neutralise it) ── */
+[data-theme="light"] .tilt-glare {
+  mix-blend-mode: multiply;
+  opacity: .4;
+}
+
+/* ── Smooth transition between themes ── */
+html {
+  transition: background-color .35s ease, color .35s ease;
+}
+
+*, *::before, *::after {
+  transition:
+    background-color .25s ease,
+    border-color .25s ease,
+    color .25s ease;
+}
+
+/* But don't slow down interactive transitions */
+button, a, .btn, .nav-toggle, .theme-toggle, .card, .blog-card, .svc-card, .chip-btn, .blog-filter-btn {
+  transition: none !important;
+}
+
+.btn, .nav-links a, .nav-links .nav-cta, .brand, .brand-logo, .card, .blog-card, .svc-card,
+.chip-btn, .blog-filter-btn, .card-link, .theme-toggle, .nav-toggle {
+  transition: all .2s ease !important;
+}
+
+/* ─── CARD CONTENT ALIGNMENT ─────────────────────────────────────────── */
+
+/* Description paragraph grows to fill height → links always bottom-aligned */
+.card > p {
+  flex: 1;
+  color: var(--muted);
+  font-size: .93rem;
+  line-height: 1.65;
+  margin-top: 8px;
+}
+
+/* Section headings left-aligned; prose content justified for clean edges */
+.page-hero-title,
+.page-hero-sub,
+.home-section h2,
+.section-label {
+  text-align: left;
+}
+
+.xp-desc p {
+  text-align: justify;
+  text-align-last: left;
+  line-height: 1.7;
+}
+
+/* ─── RESUME DOWNLOAD LINK ────────────────────────────────────────────── */
+.resume-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .78rem;
+  letter-spacing: .03em;
+  color: var(--muted);
+  text-decoration: none;
+  margin-top: 18px;
+  transition: color .2s ease;
+}
+
+.resume-dl:hover {
+  color: var(--accent);
+}
+
+.resume-dl-about {
+  margin-top: 8px;
+  font-size: .82rem;
+}
+
+/* ─── RESUME PAGE ─────────────────────────────────────────────────────── */
+.resume-page {
+  min-height: 100vh;
+  padding: 40px 0 80px;
+}
+
+.resume-actions {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  padding: 0 32px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resume {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 52px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.resume-header {
+  margin-bottom: 22px;
+}
+
+.resume-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.resume-role {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: lowercase;
+  color: var(--accent);
+  margin-top: 6px;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 10px;
+  font-size: .82rem;
+  color: var(--muted);
+}
+
+.resume-contact a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.resume-contact a:hover { color: var(--accent); }
+
+.resume-sep { opacity: .4; }
+
+.resume-rule {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-dim), transparent);
+  border: none;
+  margin: 22px 0 28px;
+}
+
+.resume-section {
+  margin-bottom: 26px;
+}
+
+.resume-section-title {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-summary {
+  font-size: .91rem;
+  line-height: 1.72;
+  color: var(--muted);
+  text-align: justify;
+  text-align-last: left;
+}
+
+.resume-job { margin-bottom: 18px; }
+
+.resume-job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resume-job-role {
+  font-weight: 600;
+  font-size: .94rem;
+  color: var(--text);
+}
+
+.resume-job-co {
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.resume-badge {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .66rem;
+  background: rgba(45,212,191,.1);
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  border-radius: 4px;
+  padding: 1px 7px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.resume-job-when {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .74rem;
+  color: var(--muted-2);
+  white-space: nowrap;
+}
+
+.resume-job-meta {
+  font-size: .8rem;
+  color: var(--muted-2);
+  margin: 3px 0 8px;
+  font-style: italic;
+}
+
+.resume-job-points {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resume-job-points li {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.resume-job-points li::before {
+  content: "▸";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-size: .68rem;
+  top: 3px;
+}
+
+.resume-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.resume-skill-row {
+  display: flex;
+  gap: 10px;
+  font-size: .87rem;
+  line-height: 1.5;
+}
+
+.resume-skill-lbl {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.resume-skill-items { color: var(--muted); }
+
+.resume-project {
+  margin-bottom: 10px;
+}
+
+.resume-project-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.resume-project-title {
+  font-weight: 600;
+  font-size: .91rem;
+  color: var(--text);
+}
+
+.resume-project-link {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .74rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.resume-project-desc {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-top: 3px;
+}
+
+.resume-project-stack {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .76rem;
+  color: var(--muted-2);
+  margin-top: 3px;
+}
+
+.resume-edu { margin-bottom: 12px; }
+
+.resume-edu-title {
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--text);
+}
+
+.resume-edu-sub {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.resume-certs {
+  font-size: .87rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+@media(max-width: 680px) {
+  .resume {
+    padding: 28px 20px;
+  }
+
+  .resume-skill-lbl {
+    min-width: 120px;
+  }
+}
+
+/* ─── PRINT STYLES ─────────────────────────────────────────────────────── */
+@media print {
+  #nav,
+  footer,
+  .wa-widget,
+  .scene3d,
+  .resume-actions {
+    display: none !important;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body::before { display: none !important; }
+
+  .resume-page {
+    padding: 0;
+    min-height: unset;
+  }
+
+  .resume {
+    max-width: 100%;
+    padding: 0;
+    background: #fff !important;
+    border: none !important;
+    border-radius: 0;
+    box-shadow: none !important;
+  }
+
+  .resume-name      { color: #111 !important; }
+  .resume-role      { color: #0D9488 !important; }
+  .resume-rule      { background: #0D9488 !important; }
+  .resume-section-title { color: #0D9488 !important; border-color: #ddd !important; }
+  .resume-summary, .resume-job-points li, .resume-skill-items,
+  .resume-project-desc, .resume-certs, .resume-edu-sub { color: #444 !important; }
+  .resume-job-role, .resume-edu-title, .resume-skill-lbl,
+  .resume-project-title, .resume-job-co { color: #111 !important; }
+  .resume-job-when, .resume-job-meta, .resume-project-stack,
+  .resume-muted-2 { color: #666 !important; }
+  .resume-contact, .resume-contact a, .resume-sep { color: #555 !important; }
+  .resume-job-points li::before { color: #0D9488 !important; }
+  .resume-badge {
+    background: transparent !important;
+    color: #0D9488 !important;
+    border-color: #0D9488 !important;
+  }
+  .resume-project-link { color: #0D9488 !important; }
 }

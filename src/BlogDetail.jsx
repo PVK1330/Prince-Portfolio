@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { blogs } from './data.js'
+import { useSEO } from './useSEO.js'
 
 // Scroll-reveal (same as main app Reveal, but simpler for the detail page).
 function Reveal({ children, className = '' }) {
@@ -59,6 +60,8 @@ export default function BlogDetail() {
   const { id } = useParams()
   const post = blogs.find((b) => b.id === id)
 
+  useSEO({ title: post?.title, description: post?.excerpt })
+
   // Scroll to top when navigating to a post.
   useEffect(() => { window.scrollTo(0, 0) }, [id])
 
@@ -74,13 +77,13 @@ export default function BlogDetail() {
         {/* Breadcrumb */}
         <Reveal>
           <nav className="bd-breadcrumb" aria-label="breadcrumb">
-            <Link to="/" className="bd-back">
+            <Link to="/blog" className="bd-back">
               <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
                 strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12" />
                 <polyline points="12 19 5 12 12 5" />
               </svg>
-              Back to portfolio
+              Back to Blog
             </Link>
             <span className="bd-sep">/</span>
             <span className="bd-crumb">blog</span>
@@ -97,8 +100,18 @@ export default function BlogDetail() {
               <span className="bd-read">{post.readTime}</span>
             </div>
             <h1 className="bd-title">{post.title}</h1>
+            <p className="bd-excerpt">{post.excerpt}</p>
           </header>
         </Reveal>
+
+        {/* Hero image */}
+        {post.image && (
+          <Reveal>
+            <div className="bd-hero-img">
+              <img src={post.image} alt={post.title} loading="eager" />
+            </div>
+          </Reveal>
+        )}
 
         {/* Post body */}
         <Reveal className="bd-body">
